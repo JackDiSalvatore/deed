@@ -18,7 +18,7 @@ contract Deed {
     // send all the Ether in this smart contract to the beneficiary
     function withdraw() public {
         require(msg.sender == lawyer, 'Only lawyer can withdraw');
-        require(now > earliestExecutionTime);
+        require(now >= earliestExecutionTime, 'Withdraw not available yet');
         // send Ether from "this" smart contract to "beneficiary"
         beneficiary.transfer(address(this).balance);
     }
